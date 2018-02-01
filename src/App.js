@@ -12,7 +12,7 @@ class App extends Component {
     this.cropper = new Cropper(image, {
       movable: false,
       zoomable: false,
-      rotatable: false,
+      rotatable: true,
       scalable: false,
       zoomOnTouch: false,
       background: false,
@@ -21,7 +21,9 @@ class App extends Component {
       highlight: false,
       movable: false,
       zoomOnWheel: false,
-      viewMode: 1
+      viewMode: 1,
+      dragMode: 'none',
+      cropBoxResizable: false
     })
   }
 
@@ -33,6 +35,10 @@ class App extends Component {
     result.appendChild(image);
   }
 
+  handleRotateClick = () => {
+    this.cropper.rotate(90)
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,6 +46,7 @@ class App extends Component {
 
         <p>
         <button onClick={this.handleClick} type="button" id="replace">crop</button>
+        <button onClick={this.handleRotateClick} type="button" id="replace">rotate</button>
       </p>
 
       <div id="result"></div>
